@@ -1,7 +1,7 @@
-How to run
+How To Run
 ==========
 
-These are instructions for how to update the examples on Github and run 
+These are instructions for how to update the examples on GitHub and run 
 MELODIES MONET both within a jupyter notebook or in a bash script submitted to 
 an HPC machine. It is highly recommended to start first running MELODIES 
 MONET in a jupyter notebook with a smaller dataset. Then you can expand on the 
@@ -9,58 +9,60 @@ analysis to produce hundreds of plots by submitting a bash script to your HPC
 machine. The basic commands in the jupyter notebook and bash script are exactly 
 the same and both similarly call an input YAML file.
 
-First, we describe how to `Prepare an Input YAML File <how_to_run.html#Prepare Input YAML File>`__.
-and we define the `Basic Commands <how_to_run.html#Basic Commands>`__. 
+First, we describe how to `Prepare An Input YAML File`_.
+Second, we define the `Basic Commands`_ to run MELODIES MONET.
 Then, we describe how to start from either a 
-`Juputer Notebook <how_to_run.html#Jupyter Notebook>`__ or 
-`Bash Script <how_to_run.html#Bash Script>`__ example.
+the `Jupyter Notebook`_ or
+the `Bash Script`_ example.
 
 Prepare an Input YAML File
 --------------------------
 You will need to prepare an input YAML file to be read into MELODIES MONET. 
 Example input YAML files to start from are provided in the 
-melodies_monet/examples/yaml folder of the code on Github. There are a number 
+``examples/yaml`` folder of the code on GitHub. There are a number 
 of comments in these example input YAML files to get you started. The overall 
-structure is the following
-   * **analysis** - All input related to the analysis class
-   * **model** - All input for each instance of the model class. The variables
-     to be plotted are included in the model class in the "mapping" dictionary. 
-     The model variable names are first (i.e. keys) and the observation variable 
-     names are the second (i.e. values). Because the plots in MELODIES MONET 
-     will plot multiple models with one observation, the observation variables 
-     listed in the mapping dictionary must be consistent across all models. 
-     For example, if you want to plot the results of multiple model datasets 
-     against the AirNow observations for "OZONE" and "PM2.5", you must 
-     provide the model variable names for "OZONE" and "PM2.5" in the mapping 
-     dictionary for all models. Say if you only provide the model variable 
-     names for "OZONE" for one of the models, MELODIES MONET will error. 
-   * **obs** - All input for each instance of the observation class
-   * **plots** - All input for each plotting group. A plotting group consists 
-     of one plotting type. The plotting types are described in 
-     `Supported Plots <../background/supported_plots.html>`__. All model / 
-     observational pairs and domains specified for the plotting group will be 
-     included. You may include as many plotting groups as you like.
-   * **stats** - All input needed to calculate the statistics. The supported
-     statistics available in MELODIES MONET are described in 
-     `Supported Stats <../background/supported_stats.html>`__. All model / 
-     observational pairs and domains specified will be included. You may 
-     include as many statistics as you like. Note however that the calculation 
-     of the statistics is relatively slow right now. Optimizing this code is 
-     under development.
+structure is the following:
+
+* **analysis** -- All input related to the analysis class.
+
+* **model** -- All input for each instance of the model class. The variables
+  to be plotted are included in the model class in the "mapping" dictionary. 
+  The model variable names are first (i.e. keys) and the observation variable 
+  names are the second (i.e. values). Because the plots in MELODIES MONET 
+  will plot multiple models with one observation, the observation variables 
+  listed in the mapping dictionary must be consistent across all models. 
+  For example, if you want to plot the results of multiple model datasets 
+  against the AirNow observations for "OZONE" and "PM2.5", you must 
+  provide the model variable names for "OZONE" and "PM2.5" in the mapping 
+  dictionary for all models. Say if you only provide the model variable 
+  names for "OZONE" for one of the models, MELODIES MONET will error. 
+* **obs** -- All input for each instance of the observation class.
+
+* **plots** -- All input for each plotting group. A plotting group consists 
+  of one plotting type. The plotting types are described in 
+  :doc:`/background/supported_plots`. All model /
+  observational pairs and domains specified for the plotting group will be 
+  included. You may include as many plotting groups as you like.
+
+* **stats** -- All input needed to calculate the statistics. The supported
+  statistics available in MELODIES MONET are described in 
+  :doc:`/background/supported_stats`. All model /
+  observational pairs and domains specified will be included. You may 
+  include as many statistics as you like. Note however that the calculation 
+  of the statistics is relatively slow right now. Optimizing this code is 
+  under development.
 
 A detailed description of all the options in the input YAML file is provided 
-in the Appendix under `Description of All YAML Options <../appendix/yaml.html>`__.
+in the Appendix under :doc:`/appendix/yaml`.
 
 Basic Commands
 --------------
 
-First, you will import the driver.py file in the melodies_monet directory. 
-You will need to update the path below based on where you are storing either
-your jupyter notebook or bash script. ::
+First, you will import the MELODIES MONET driver. You will need to update the path
+below to point to the location of your MELODIES-MONET GitHub repository. ::
 
-    import sys
-    sys.path.append('../../')
-    import driver
+    import sys; sys.path.append("../../")
+    from melodies_monet import driver
 
 Then you will create an instance of the python driver analysis class. The 
 analysis class consists of 4 main parts; information read in by the input YAML 
@@ -91,7 +93,7 @@ observation dataset, which includes information like the label, type, filenames,
 and file paths. MONET can automatically download observational data. For now, 
 MELODIES MONET will open preprocessed data because some HPC platforms have 
 download restrictions. We will work on automating this process further in the 
-future. See `Downloading Observations <downloading_obs.html>`__ to learn how to 
+future. See :doc:`downloading_obs` to learn how to
 preprocess the observational data for MELODIES MONET ::
 
      an.open_obs()
@@ -119,7 +121,7 @@ Jupyter Notebook
 ----------------
 
 Jupyter notebook examples explaining how to run MELODIES MONET are in the 
-melodies_monet/examples/jupyter_notebooks folder of the code on Github. It is
+``examples/jupyter_notebooks`` folder of the code on GitHub. It is
 highly recommended for new and expert users to first use MELODIES MONET on a 
 subset of the analysis in jupyter notebook. The jupyter notebook examples 
 demonstrate how to print different pieces of the analysis class instance in 
@@ -133,7 +135,7 @@ Jupyter notebooks are great for quick analysis and ensuring you have set up the
 configuration properly, but if you want to perform the analysis for a longer 
 time period or create hundreds of plots submitting a bash script as a job on 
 your HPC computer is preferred. Bash script examples for running MELODIES MONET 
-are in the melodies_monet/examples/submit_jobs folder of the code on Github.
+are in the ``examples/submit_jobs`` folder of the code on GitHub.
 
    * If you are using a model like WRF-Chem, CMAQ, or RRFS-CMAQ that is run in 
      forecasting mode and you want to combine model results across multiple 

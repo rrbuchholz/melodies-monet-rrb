@@ -4,29 +4,29 @@ Description of All YAML Options
 General Rules
 -------------
 
-   * Any key that is specific for a plot type will begin with one of the 
-     following descriptors:
-        - ts for Timeseries
-        - ty for Taylor
-   * When a key is optional it will be followed by #Opt 
-   * All plots use data over the entire analysis window from the "start_time" 
-     to the "end_time" specified in the "analysis" section. 
-        - timeseries - average over window provided by "ts_avg_window"
-        - taylor - calculated over entire analysis window
-        - spatial_bias - average over entire analysis window
-        - spatial_overlay - average over entire analysis window
-        - boxplot - calculated over entire analysis window
-   * If "set_axis" = True in "data_proc" section of each "plot_grp", the y-axis 
-     for that plot_grp will be set based on the values specified in the "obs" 
-     section for each "variable". If "set_axis" = False, then the automatic
-     scaling in Matplotlib will be used. 'vmin_plot' and 'vmax_plot' are needed
-     for 'timeseries', 'spatial_overlay', and 'boxplot'. 'vdiff_plot' is needed
-     for 'spatial_bias' plots and 'ty_scale' is needed for 'taylor' plots. 
-     'nlevels' or the number of levels used in the contour plot can also 
-     optionally be provided for 'spatial_overlay' plot. If set_axis = True and 
-     the proper limits are not provided in the 'obs' section, a warning will 
-     print, and the plot will be created using the automatic scaling in
-     Matplotlib.
+* Any key that is specific for a plot type will begin with one of the 
+  following descriptors:
+  - ts for Timeseries
+  - ty for Taylor
+* When a key is optional it will be followed by #Opt 
+* All plots use data over the entire analysis window from the "start_time" 
+  to the "end_time" specified in the "analysis" section. 
+  - timeseries - average over window provided by "ts_avg_window"
+  - taylor - calculated over entire analysis window
+  - spatial_bias - average over entire analysis window
+  - spatial_overlay - average over entire analysis window
+  - boxplot - calculated over entire analysis window
+* If "set_axis" = True in "data_proc" section of each "plot_grp", the y-axis 
+  for that plot_grp will be set based on the values specified in the "obs" 
+  section for each "variable". If "set_axis" = False, then the automatic
+  scaling in Matplotlib will be used. 'vmin_plot' and 'vmax_plot' are needed
+  for 'timeseries', 'spatial_overlay', and 'boxplot'. 'vdiff_plot' is needed
+  for 'spatial_bias' plots and 'ty_scale' is needed for 'taylor' plots. 
+  'nlevels' or the number of levels used in the contour plot can also 
+  optionally be provided for 'spatial_overlay' plot. If set_axis = True and 
+  the proper limits are not provided in the 'obs' section, a warning will 
+  print, and the plot will be created using the automatic scaling in
+  Matplotlib.
 
 Analysis
 --------
@@ -54,10 +54,10 @@ label. Then under each model label provide the following:
 **files:** The file directory location and name(s). Hotkeys are allowed.
 
 **files_vert:** This is for CMAQ only. If you want to calculate vertical info, 
-please provide location of *.metcro3d.ncf files here.
+please provide location of ``*.metcro3d.ncf`` files here.
 
 **files_surf:** This is for CMAQ only. If you want to calculate vertical info, 
-please provide location of *.metcro2d.ncf files here.
+please provide location of ``*.metcro2d.ncf`` files here.
 
 **mod_type:** The model type. Options are: 'cmaq', 'wrfchem', 'rrfs', 'gsdchem'. 
 If you specify another name, MELODIES MONET will try to read in the data using
@@ -65,7 +65,7 @@ xarray.open_mfdataset and xarray.open_dataset().
 
 **mod_kwargs**: This is an optional dictionary to include information to 
 provide to the model dataset reader scripts in MONETIO (temporarily in the 
-MELODIES-MONET/melodies_monet/new_monetio folder on Github). For example, you
+MELODIES-MONET/melodies_monet/new_monetio folder on GitHub). For example, you
 can provide mechanism information (e.g., mech: 'cb6r3_ae6_aq') or for some models, 
 in order to reduce processing time you can only pull in the surface data 
 (e.g., surf_only: True).
@@ -124,7 +124,7 @@ Generalizing this to include other surface observations is under development.
 
 **filename:**  The file directory location and name. These observations need 
 to be preprocessed prior to incorporating them into MELODIES MONET. See 
-`Downloading Observations <../tutorial/downloading_obs.html>`__ for more details.
+:doc:`../tutorial/downloading_obs` for more details.
 
 **obs_type:** The observation type. Options are: "pt_sfc" or point surface. Adding 
 options for Aircraft and Satellite observations are under development.
@@ -176,7 +176,7 @@ Plots
 -----
 All input for each plotting group. A plotting group consists of one plotting 
 type. The plotting types are described in 
-`Supported Plots <../background/supported_plots.html>`__. All model / 
+:doc:`/background/supported_plots`. All model /
 observational pairs and domains specified for the plotting group will be 
 included. You may include as many plotting groups as you like.
 
@@ -244,7 +244,7 @@ Stats
 -----
 All input needed to calculate the statistics. The supported statistics available 
 in MELODIES MONET are described in 
-`Supported Stats <../background/supported_stats.html>`__. All model / 
+:doc:`/background/supported_stats`. All model /
 observational pairs and domains specified will be included. You may include as 
 many statistics as you like. Note however that the calculation of the statistics 
 is relatively slow right now. Optimizing this code is under development.
@@ -254,7 +254,7 @@ use Kelvin. Wind direction has special calculations for AirNow if the observatio
 name is 'WD'. 
 
 **stat_list:** List of acronyms of statistics to calculate as defined in 
-`Supported Stats <../background/supported_stats.html>`__. (e.g., ['MB', 'MdnB', 
+:doc:`/background/supported_stats`. (e.g., ['MB', 'MdnB',
 'NMB', 'NMdnB','R2', 'RMSE']). A dictionary of definitions is also included in 
 MELODIES-MONET/melodies_monet/stats/proc_stats.py. 
 

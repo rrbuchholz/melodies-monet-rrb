@@ -14,21 +14,15 @@
 #
 import os
 import sys
-from unittest.mock import MagicMock
-
-
-class Mock(MagicMock):
-    @classmethod
-    def __getattr__(cls, name):
-        return MagicMock()
 
 
 # sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 sys.path.insert(0, os.path.abspath('../'))
+
 # -- Project information -----------------------------------------------------
 
 project = u'MELODIES-MONET'
-copyright = u'2021, NCAR/UCAR, NOAA'
+copyright = u'2022, NCAR/UCAR, NOAA'
 author = u'Rebecca Schwantes (NOAA), Barry Baker (NOAA), Louisa Emmons (NCAR), Rebecca Buchholz (NCAR)'
 
 # The short X.Y version
@@ -45,19 +39,46 @@ release = u''
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.autosummary', 'sphinx.ext.napoleon', 'sphinx.ext.extlinks']
-# exclude_patterns = ['_build', '**.ipynb_checkpoints']
+extensions = [
+    'sphinx.ext.autosectionlabel',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.extlinks',
+    'myst_nb',
+    'sphinx_design',
+]
 
 extlinks = {
     'issue': ('https://github.com/noaa-csl/melodies-monet/issues/%s', 'GH'),
     'pull': ('https://github.com/noaa-csl/melodies-monet/pull/%s', 'PR'),
 }
 
-autosummary_generate = True
-numpydoc_class_members_toctree = True
+autosummary_generate = True  # default in Sphinx v4
+
+autodoc_default_options = {
+    "members": True,
+    "special-members": "__init__",
+    # "undoc-members": True,
+}
+autodoc_member_order = "groupwise"
+
 napoleon_google_docstring = False
+napoleon_numpy_docstring = True
 napoleon_use_param = False
+napoleon_use_rtype = False
 napoleon_use_ivar = False  # True
+napoleon_preprocess_types = True
+
+execution_timeout = 300  # in seconds, for each notebook cell (default: 30)
+# jupyter_execute_notebooks = "auto"  # don't execute if all cells have output (default)
+# jupyter_execute_notebooks = "cache"  # to speed build when working on other things
+jupyter_execute_notebooks = "off"
+execution_excludepatterns = [
+    "examples/airnow_wrfchem.ipynb",
+]
+
+myst_enable_extensions = ["colon_fence"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -81,7 +102,9 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = [u'_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = [
+    u'_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints',
+]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -177,3 +200,13 @@ texinfo_documents = [
 ]
 
 # -- Extension configuration -------------------------------------------------
+
+linkcheck_ignore = [
+    "https://github.com/NOAA-CSL/MELODIES-MONET.*",  # just until repo is public
+    # Auth required:
+    "https://rdhpcs-common-docs.rdhpcs.noaa.gov/wiki/index.php/Anaconda#Installation",
+    "https://www2.cisl.ucar.edu/resources/conda-environments",
+]
+
+autosectionlabel_prefix_document = True
+autosectionlabel_maxdepth = 2

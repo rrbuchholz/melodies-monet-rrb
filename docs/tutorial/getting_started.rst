@@ -11,7 +11,7 @@ file. Users run MELODIES MONET by importing the driver script, creating an
 analysis class, reading in the YAML input file, opening the models, opening 
 the observations, pairing the model and observations, creating the plots, and 
 calculating the statistics. The exact commands to run MELODIES MONET are 
-described in the `How to run <how_to_run.html>`__ section of this tutorial. 
+described in the :doc:`how_to_run` section of this tutorial.
 All model and observational datasets are read into MELODIES MONET into a 
 consistent format prior to analysis. The input YAML file allows users to 
 specify a mapping dictionary with how to pair model and observation variable 
@@ -26,26 +26,27 @@ How MELODIES MONET works
 A single `driver file <https://github.com/NOAA-CSL/MELODIES-MONET/blob/develop/melodies_monet/driver.py>`__. 
 includes the core code that "drives" MELODIES MONET. The driver file 
 initializes several classes as shown in the schematic below. 
-   * **Analysis class** - This class holds all information needed for the 
-     analysis including all information from the YAML input file, all instances
-     of the model class, all instances of the observation class, and all
-     instances of the pairing class.
-   * **Model class** - This class holds all information related to a single 
-     model dataset including the model label, type, mapping dictionary for how 
-     to pair the model variables with observational variables, plotting 
-     information, and unit conversions as needed. The analysis class can hold 
-     multiple instances of the model class.
-   * **Observation class** - This class holds all information related to a 
-     single observational dataset including the observation label, type, 
-     plotting information, and unit conversions as needed. The analysis class can hold 
-     multiple instances of the observation class.
-   * **Pairing class** - This class holds all information related to a 
-     model/observational pair. In MELODIES MONET all models are paired with 
-     all observations listed in the input YAML file. Model results are 
-     directly paired in both time and space to the observational dataset for 
-     all variables listed in the mapping dictionary specified in the model 
-     class.
-   
+
+* **Analysis class** -- This class holds all information needed for the 
+  analysis including all information from the YAML input file, all instances
+  of the model class, all instances of the observation class, and all
+  instances of the pairing class.
+* **Model class** -- This class holds all information related to a single 
+  model dataset including the model label, type, mapping dictionary for how 
+  to pair the model variables with observational variables, plotting 
+  information, and unit conversions as needed. The analysis class can hold 
+  multiple instances of the model class.
+* **Observation class** -- This class holds all information related to a 
+  single observational dataset including the observation label, type, 
+  plotting information, and unit conversions as needed. The analysis class can hold 
+  multiple instances of the observation class.
+* **Pairing class** -- This class holds all information related to a 
+  model/observational pair. In MELODIES MONET all models are paired with 
+  all observations listed in the input YAML file. Model results are 
+  directly paired in both time and space to the observational dataset for 
+  all variables listed in the mapping dictionary specified in the model 
+  class.
+
 After all of the relevant information is incorporated into the analysis class,
 the plotting and stats routines in the driver can be called to generate the 
 plots and calculate statistics. The plotting and statistical routines will 
@@ -64,9 +65,9 @@ we aim for the average user of MELODIES MONET to be able to easily understand
 the core code and contribute new components.
 
 To learn more about current capabilities and future development objectives
-see the `Supported Datasets <../background/supported_datasets.html>`__ , 
-`Supported Plots <../background/supported_plots.html>`__, and 
-`Supported Statistics <../background/supported_stats.html>`__ pages in the 
+see the :doc:`/background/supported_datasets` ,
+:doc:`/background/supported_plots`, and
+:doc:`/background/supported_stats` pages in the
 Background section of this guide.
 
 
