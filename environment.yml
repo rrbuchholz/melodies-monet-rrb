@@ -10,6 +10,7 @@ dependencies:
   - xarray=0.20.1
   - dask=2021.11.2
   - netcdf4=1.5.8
+  - pyhdf=0.10.3
   - xesmf=0.6.2
   - pyresample=1.22.2
   - matplotlib-base=3.5.0
