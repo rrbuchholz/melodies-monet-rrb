@@ -21,6 +21,7 @@ dependencies:
   - gdown=4.4.0
   # - monetio=0.2.0
   # - monet=2.2.4
+  - pip=21.2.4
   - pip:
     - git+https://github.com/noaa-oar-arl/monetio
     - git+https://github.com/noaa-oar-arl/monet
