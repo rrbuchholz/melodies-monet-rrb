@@ -18,6 +18,9 @@ dependencies:
   - cartopy=0.20.1
   - pydecorate=0.3.1
   - wrf-python=1.3.2.6 
-  - monetio=0.2.0
-  - monet=2.2.4
   - gdown=4.4.0
+  # - monetio=0.2.0
+  # - monet=2.2.4
+  - pip:
+    - git+https://github.com/noaa-oar-arl/monetio
+    - git+https://github.com/noaa-oar-arl/monet
