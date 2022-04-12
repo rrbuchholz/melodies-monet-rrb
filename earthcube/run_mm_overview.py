@@ -9,10 +9,10 @@ an.control_dict
 
 an.open_models()
 an.models
-an.models['RACM_ESRL'].obj
+an.models['CAM_Chem'].obj
 
-print(an.models['RACM_ESRL'].label)
-print(an.models['RACM_ESRL'].mapping)
+print(an.models['CAM_Chem'].label)
+print(an.models['CAM_Chem'].mapping)
 print(an.start_time)
 print(an.end_time)
 

@@ -7,13 +7,15 @@ analysis:
 
 model:
   # Regional Atmospheric Chemistry Model/Earth System Research Lab
-  CAM_Chem:
-    files: ../example_model_data/cesmfv_example/CAM_chem_merra2_FCSD_1deg_QFED_world_201909-01-09_small_sfc.nc
-    mod_type: 'cesm_fv'
+  RACM_ESRL:
+    files: ../example_model_data/wrfchem_example/racm_esrl/wrfout_d01_2019*
+    mod_type: 'wrfchem'
+    mod_kwargs:
+      mech: 'racm_esrl_vcp'
     radius_of_influence: 12000 # meters
     mapping: # model species name : obs species name
       AirNow:
-        O3: "OZONE"
+        o3: "OZONE"
     projection: None
     plot_kwargs:
       color: 'magenta'
@@ -51,7 +53,7 @@ plots:
       fontsize: 24
     domain_type: ['all','state_name','epa_region']
     domain_name: ['CONUS','CA','R9']
-    data: ['AirNow_CAM_Chem']
+    data: ['AirNow_RACM_ESRL']
     data_proc:
       rem_obs_nan: True
       ts_select_time: 'time_local'
@@ -67,7 +69,7 @@ plots:
       fontsize: 16
     domain_type: ['all','state_name','epa_region']
     domain_name: ['CONUS','CA','R9']
-    data: ['AirNow_CAM_Chem']
+    data: ['AirNow_RACM_ESRL']
     data_proc:
       rem_obs_nan: True
       set_axis: True
